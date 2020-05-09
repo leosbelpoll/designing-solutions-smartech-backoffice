@@ -17,6 +17,7 @@ import FormDetail from "components/business/Form/FormDetail";
 // Standards
 import StandardList from "components/business/Standard/StandardList";
 import StandardDetail from "components/business/Standard/StandardDetail";
+import ProjectForm from "components/business/Project/ProjectForm";
 
 export default function InternalRoutes() {
     return (
@@ -30,6 +31,7 @@ export default function InternalRoutes() {
                     {/* Projects */}
                     <Route exact path={URLMapping.PROJECTS} component={ProjectList} />
                     <Route exact path={URLMapping.PROJECT_DETAIL} component={ProjectDetail} />
+                    <Route exact path={URLMapping.CREATE_PROJECT} component={ProjectForm} />
 
                     {/* Forms */}
                     <Route exact path={URLMapping.FORMS} component={FormList} />

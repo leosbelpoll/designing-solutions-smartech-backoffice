@@ -44,6 +44,23 @@ export default function (state = initialState, { type, projects, project, error 
                 loading: false,
                 error: error
             };
+        case projectTypes.START_CREATING_PROJECT:
+            return {
+                ...state,
+                loading: true
+            };
+        case projectTypes.SUCCESS_CREATING_PROJECT:
+            return {
+                ...state,
+                loading: false,
+                error: null
+            };
+        case projectTypes.ERROR_CREATING_PROJECT:
+            return {
+                ...state,
+                loading: false,
+                error: error
+            };
         default:
             return state;
     }

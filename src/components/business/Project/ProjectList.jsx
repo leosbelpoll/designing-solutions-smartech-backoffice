@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import URLMapping from "utils/routes";
 import { startGettingProjects } from "components/redux/actions/projectsActions";
@@ -21,6 +22,7 @@ function ProjectList(props) {
     return (
         <>
             <Title title="Project list" loading={loading} />
+            <Link to={URLMapping.CREATE_PROJECT} className="btn btn-primary mb-3">Create</Link>
             <Table
                 type="crud"
                 content={projects}

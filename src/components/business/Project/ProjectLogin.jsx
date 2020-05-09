@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import URLMapping from "utils/routes";
 import profileImage from "images/profile-image.png";

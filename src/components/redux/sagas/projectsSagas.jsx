@@ -38,9 +38,24 @@ export function* getProject({ id }) {
     }
 }
 
+export function* createProject({ project }) {
+    try {
+        yield call(apiCall, `http://localhost:8000/api/projects`, "POST", project);
+        yield put({
+            type: projectTypes.SUCCESS_CREATING_PROJECT
+        });
+    } catch (error) {
+        yield put({
+            type: projectTypes.ERROR_CREATING_PROJECT,
+            error
+        });
+    }
+}
+
 // Watchers
 
 export default function* projects() {
     yield takeLatest(projectTypes.START_GETTING_PROJECTS, getProjects);
     yield takeLatest(projectTypes.START_GETTING_PROJECT, getProject);
+    yield takeLatest(projectTypes.START_CREATING_PROJECT, createProject);
 }

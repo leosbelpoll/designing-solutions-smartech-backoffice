@@ -1,3 +1,5 @@
+// Llist
+
 export const startGettingProjects = () => ({
     type: projectTypes.START_GETTING_PROJECTS
 });
@@ -13,7 +15,7 @@ export const errorGettingProjects = payload => ({
 });
 
 
-// Project detail
+// Detail
 
 export const startGettingProject = id => ({
     type: projectTypes.START_GETTING_PROJECT,
@@ -30,6 +32,23 @@ export const errorGettingProject = payload => ({
     ...payload
 });
 
+// Create
+
+export const startCreatingProjects = project => ({
+    type: projectTypes.START_CREATING_PROJECT,
+    project
+});
+
+export const successCreatingProjects = payload => ({
+    type: projectTypes.SUCCESS_CREATING_PROJECT,
+    ...payload
+});
+
+export const errorCreatingProjects = payload => ({
+    type: projectTypes.ERROR_CREATING_PROJECT,
+    ...payload
+});
+
 export const projectTypes = {
     START_GETTING_PROJECTS: "START_GETTING_PROJECTS",
     SUCCESS_GETTING_PROJECTS: "SUCCESS_GETTING_PROJECTS",
@@ -38,4 +57,8 @@ export const projectTypes = {
     START_GETTING_PROJECT: "START_GETTING_PROJECT",
     SUCCESS_GETTING_PROJECT: "SUCCESS_GETTING_PROJECT",
     ERROR_GETTING_PROJECT: "ERROR_GETTING_PROJECT",
+
+    START_CREATING_PROJECT: "START_CREATING_PROJECT",
+    SUCCESS_CREATING_PROJECT: "SUCCESS_CREATING_PROJECT",
+    ERROR_CREATING_PROJECT: "ERROR_CREATING_PROJECT",
 };
