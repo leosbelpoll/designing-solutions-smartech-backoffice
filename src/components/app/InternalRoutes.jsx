@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import URLMapping from "utils/routes";
 import Home from "components/ui/pages/Home";
@@ -26,6 +26,7 @@ export default function InternalRoutes() {
             <div className="container">
                 <Switch>
                     {/* Front */}
+                    <Route exact path={URLMapping.LOGIN} render={() => <Redirect to="/" />} />
                     <Route exact path={URLMapping.HOME} component={Home} />
 
                     {/* Projects */}

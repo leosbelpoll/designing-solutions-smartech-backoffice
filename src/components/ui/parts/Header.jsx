@@ -7,7 +7,7 @@ export default function Header() {
     const history = useHistory();
 
     const logout = () => {
-        localStorage.removeItem("isLogged");
+        localStorage.setItem("isLogged", false);
         history.push(URLMapping.LOGIN);
     };
 
