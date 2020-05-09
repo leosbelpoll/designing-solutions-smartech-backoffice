@@ -1,10 +1,11 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { formTypes } from "../actions/formsActions";
 import apiCall from "utils/api";
+import { getEnv } from "utils/envUtils";
 
 export function* getForms() {
     try {
-        const forms = yield call(apiCall, `http://localhost:8000/api/forms`);
+        const forms = yield call(apiCall, `${getEnv("API_UR")}/forms`);
         const finalForms = forms.map(form => ({
             ...form,
             trash: () => {
@@ -25,7 +26,7 @@ export function* getForms() {
 
 export function* getForm({ id }) {
     try {
-        const form = yield call(apiCall, `http://localhost:8000/api/forms/${id}`);
+        const form = yield call(apiCall, `${getEnv("API_UR")}/forms/${id}`);
         yield put({
             type: formTypes.SUCCESS_GETTING_FORM,
             form
