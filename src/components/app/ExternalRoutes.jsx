@@ -1,15 +1,15 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import URLMapping from "utils/routes";
-import ProjectLogin from "components/business/Project/ProjectLogin";
+import Login from "components/app/Login";
 import NotFound from "components/ui/pages/NotFound";
 
 export default function ExternalRoutes() {
     return (
         <Switch>
-            <Route exact path={URLMapping.LOGIN} component={ProjectLogin} />
-            <Route path="*" component={NotFound} />
+            <Route exact path={URLMapping.LOGIN} component={Login} />
+            <Route path="*" render={() => <Redirect to={URLMapping.LOGIN}/>} />
         </Switch>
     );
 }

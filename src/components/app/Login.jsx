@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 
 import URLMapping from "utils/routes";
 import profileImage from "images/profile-image.png";
-import "./ProjectLogin.scss";
+import "./Login.scss";
 
-export default function ProjectLogin(props) {
+export default function Login(props) {
     let history = useHistory();
 
     const login = () => {
