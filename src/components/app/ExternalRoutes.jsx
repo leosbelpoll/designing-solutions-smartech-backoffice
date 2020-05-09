@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import URLMapping from "utils/routes";
 import Login from "components/app/Login";
-import NotFound from "components/ui/pages/NotFound";
 
 export default function ExternalRoutes() {
     return (
