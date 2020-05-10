@@ -1,30 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import URLMapping from "utils/routes";
 import Title from "components/ui/parts/Title";
-import { startCreatingProjects } from "components/redux/actions/projectsActions";
+import { startCreatingProjects, startGettingProject } from "components/redux/actions/projectsActions";
 
 function ProjectForm(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const { id } = useParams();
     const COMPONENT = "project";
-    const { createProject } = props;
+    const { project, loading, error, getProject, createProject } = props;
 
-    const onSubmit = (e) => {
+    useEffect(() => {
+        getProject(id);
+        setName(project.name);
+        setDescription(project.description);
+    }, [id, JSON.stringify(project), getProject]);
+
+    const onSubmit = e => {
         e.preventDefault();
-        
+
         createProject({
             name,
             description
         });
-    }
+    };
 
     return (
         <>
-            {id ? <Title title={`Update ${COMPONENT}`} /> : <Title title={`Create ${COMPONENT}`} />}
+            <Title title={id ? "Update" : "Create" + " " + COMPONENT} loading={loading} />
             <form className="mt-4">
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -51,7 +57,7 @@ function ProjectForm(props) {
                     />
                 </div>
                 <button onClick={onSubmit} className="btn btn-primary mb-4 mt-4">
-                    Create {COMPONENT}
+                    {id ? "Update" : "Create"} {COMPONENT}
                 </button>
                 <Link to={URLMapping.PROJECTS} className="btn btn-outline-secondary mb-4 mt-4 ml-4">
                     Back to list
@@ -62,13 +68,14 @@ function ProjectForm(props) {
 }
 
 const mapStateToProps = state => ({
-    formToUpdate: state.projectsReducer.formToUpdate,
+    project: state.projectsReducer.project || {},
     error: state.projectsReducer.error,
     loading: state.projectsReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-    createProject: data => dispatch(startCreatingProjects(data))
+    createProject: data => dispatch(startCreatingProjects(data)),
+    getProject: id => dispatch(startGettingProject(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectForm);

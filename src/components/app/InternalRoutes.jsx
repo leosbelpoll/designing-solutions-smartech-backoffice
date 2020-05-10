@@ -33,6 +33,7 @@ export default function InternalRoutes() {
                     <Route exact path={URLMapping.PROJECTS} component={ProjectList} />
                     <Route exact path={URLMapping.PROJECT_DETAIL} component={ProjectDetail} />
                     <Route exact path={URLMapping.CREATE_PROJECT} component={ProjectForm} />
+                    <Route exact path={URLMapping.UPDATE_PROJECT} component={ProjectForm} />
 
                     {/* Forms */}
                     <Route exact path={URLMapping.FORMS} component={FormList} />

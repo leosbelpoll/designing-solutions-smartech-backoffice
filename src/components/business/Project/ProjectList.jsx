@@ -32,14 +32,7 @@ function ProjectList(props) {
                         link: item => `${URLMapping.PROJECTS}/${item.id}`
                     },
                     {
-                        name: "lastName"
-                    },
-                    {
-                        name: "projectname",
-                        className: "bg-warning p-1 text-danger"
-                    },
-                    {
-                        name: "lifeState"
+                        name: "description"
                     }
                 ]}
             />
