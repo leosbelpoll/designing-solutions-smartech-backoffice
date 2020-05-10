@@ -6,6 +6,7 @@ import { startGettingStandards } from "components/redux/actions/standardsActions
 import Error from "components/ui/pages/Error";
 import Title from "components/ui/parts/Title";
 import Table from "components/ui/parts/Table";
+import { Link } from "react-router-dom";
 
 function StandardList(props) {
     const { standards, loading, error, getStandards } = props;
@@ -21,9 +22,10 @@ function StandardList(props) {
     return (
         <>
             <Title title="Standard list" loading={loading} />
+            <Link to={URLMapping.CREATE_STANDARD} className="btn btn-primary mb-3">Create</Link>
             <Table
                 type="crud"
-                content={standards}
+                content={standards.slice().reverse()}
                 onlyColumns={[
                     {
                         name: "name",

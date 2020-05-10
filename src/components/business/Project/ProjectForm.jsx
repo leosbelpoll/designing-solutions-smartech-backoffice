@@ -7,21 +7,25 @@ import Title from "components/ui/parts/Title";
 import { startCreatingProjects, startGettingProject } from "components/redux/actions/projectsActions";
 
 function ProjectForm(props) {
+    const [err, setErr] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const { id } = useParams();
+    const OPERATION = id ? "Update" : "Create";
     const COMPONENT = "project";
     const { project, loading, error, getProject, createProject } = props;
 
     useEffect(() => {
-        getProject(id);
-        setName(project.name);
-        setDescription(project.description);
-    }, [id, JSON.stringify(project), getProject]);
+        setErr(error);
+        if (id) {
+            getProject(id);
+            setName(project.name);
+            setDescription(project.description);
+        }
+    }, [id, project.name, project.description, JSON.stringify(error), getProject]);
 
     const onSubmit = e => {
         e.preventDefault();
-
         createProject({
             name,
             description
@@ -30,7 +34,15 @@ function ProjectForm(props) {
 
     return (
         <>
-            <Title title={id ? "Update" : "Create" + " " + COMPONENT} loading={loading} />
+            <Title title={ OPERATION + " " + COMPONENT} loading={loading} />
+            {err && (
+                    <div className="alert alert-danger">
+                        <button type="button" className="close" onClick={() => setErr(null)}>
+                            &times;
+                        </button>
+                        <strong>Error!</strong> Ups! Something was wrong. {JSON.stringify(err)}
+                    </div>
+                )}
             <form className="mt-4">
                 <div className="form-group">
                     <label htmlFor="name">Name</label>

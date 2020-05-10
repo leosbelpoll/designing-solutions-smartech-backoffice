@@ -1,11 +1,10 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { projectTypes } from "../actions/projectsActions";
 import apiCall from "utils/api";
-import { getEnv } from "utils/envUtils";
 
 export function* getProjects() {
     try {
-        const projects = yield call(apiCall, `${getEnv("API_URL")}/projects`);
+        const projects = yield call(apiCall, "/projects");
         const finalProjects = projects.map(project => ({
             ...project,
             trash: () => {
@@ -26,7 +25,7 @@ export function* getProjects() {
 
 export function* getProject({ id }) {
     try {
-        const project = yield call(apiCall, `${getEnv("API_URL")}/projects/${id}`);
+        const project = yield call(apiCall, `/projects/${id}`);
         yield put({
             type: projectTypes.SUCCESS_GETTING_PROJECT,
             project
@@ -41,7 +40,7 @@ export function* getProject({ id }) {
 
 export function* createProject({ project }) {
     try {
-        yield call(apiCall, `${getEnv("API_URL")}/projects`, "POST", project);
+        yield call(apiCall, "/projects", "POST", project);
         yield put({
             type: projectTypes.SUCCESS_CREATING_PROJECT
         });

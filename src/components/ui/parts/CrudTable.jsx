@@ -5,6 +5,14 @@ import { Link } from "react-router-dom";
 export default function CrudTable(props) {
     const { content, columns } = props;
 
+    if (!content.length) {
+        return (
+            <div className="alert-secondary">
+                <strong>Note!</strong> There is no items here!
+            </div>
+        );
+    }
+
     return (
         <table className="table table-hover thead-dark">
             <thead>

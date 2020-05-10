@@ -1,12 +1,13 @@
 import React from "react";
 
-import useLogged from "components/hooks/useLogged";
+import useAuth from "components/hooks/useAuth";
 import InternalRoutes from "./InternalRoutes";
 import ExternalRoutes from "./ExternalRoutes";
 
 export default function Routes() {
-    const logged = useLogged();
-
+    const { isLogged } = useAuth();
+    const logged = isLogged();
+    
     if (logged !== undefined){
         return logged ? <InternalRoutes /> : <ExternalRoutes />;
     } else {

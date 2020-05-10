@@ -6,6 +6,7 @@ import { startGettingForms } from "components/redux/actions/formsActions";
 import Error from "components/ui/pages/Error";
 import Title from "components/ui/parts/Title";
 import Table from "components/ui/parts/Table";
+import { Link } from "react-router-dom";
 
 function FormList(props) {
     const { forms, loading, error, getForms } = props;
@@ -21,9 +22,10 @@ function FormList(props) {
     return (
         <>
             <Title title="Form list" loading={loading} />
+            <Link to={URLMapping.CREATE_FORM} className="btn btn-primary mb-3">Create</Link>
             <Table
                 type="crud"
-                content={forms}
+                content={forms.slice().reverse()}
                 onlyColumns={[
                     {
                         name: "name",

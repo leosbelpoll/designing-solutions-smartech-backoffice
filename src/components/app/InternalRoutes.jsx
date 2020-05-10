@@ -26,7 +26,7 @@ export default function InternalRoutes() {
             <div className="container">
                 <Switch>
                     {/* Front */}
-                    <Route exact path={URLMapping.LOGIN} render={() => <Redirect to="/" />} />
+                    <Route exact path={URLMapping.LOGIN} render={() => <Redirect to={URLMapping.HOME} />} />
                     <Route exact path={URLMapping.HOME} component={Home} />
 
                     {/* Projects */}

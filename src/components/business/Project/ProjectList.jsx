@@ -25,11 +25,11 @@ function ProjectList(props) {
             <Link to={URLMapping.CREATE_PROJECT} className="btn btn-primary mb-3">Create</Link>
             <Table
                 type="crud"
-                content={projects}
+                content={projects.slice().reverse()}
                 onlyColumns={[
                     {
                         name: "name",
-                        link: item => `${URLMapping.PROJECTS}/${item.id}`
+                        link: item => URLMapping.PROJECT_DETAIL.replace(":id", item.id)
                     },
                     {
                         name: "description"

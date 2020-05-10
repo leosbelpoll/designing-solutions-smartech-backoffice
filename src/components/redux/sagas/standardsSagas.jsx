@@ -1,11 +1,10 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { standardTypes } from "../actions/standardsActions";
 import apiCall from "utils/api";
-import { getEnv } from "utils/envUtils";
 
 export function* getStandards() {
     try {
-        const standards = yield call(apiCall, `${getEnv("API_URL")}/standards`);
+        const standards = yield call(apiCall, "/standards");
         const finalStandards = standards.map(standard => ({
             ...standard,
             trash: () => {
@@ -26,7 +25,7 @@ export function* getStandards() {
 
 export function* getStandard({ id }) {
     try {
-        const standard = yield call(apiCall, `${getEnv("API_URL")}/standards/${id}`);
+        const standard = yield call(apiCall, `/standards/${id}`);
         yield put({
             type: standardTypes.SUCCESS_GETTING_STANDARD,
             standard

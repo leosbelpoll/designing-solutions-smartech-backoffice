@@ -1,14 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-import { NavLink, useHistory } from "react-router-dom";
 import URLMapping from "utils/routes";
+import useAuth from "components/hooks/useAuth";
 
 export default function Header() {
-    const history = useHistory();
+    const { logout } = useAuth();
 
-    const logout = () => {
-        localStorage.setItem("isLogged", false);
-        history.push(URLMapping.LOGIN);
+    const onLogout = () => {
+        logout();
     };
 
     return (
@@ -57,7 +57,7 @@ export default function Header() {
                 </ul>
                 <ul className="navbar-nav my-2 my-lg-0">
                     <li className="nav-item">
-                        <button className="btn" onClick={logout}>
+                        <button className="btn" onClick={onLogout}>
                             Logout
                         </button>
                     </li>
